@@ -44,9 +44,36 @@ INSTALLED_APPS = [
     'pages.apps.PagesConfig',
     'crispy_forms', # Pourquoi dans le livre c'est crispy forms alors qu'ici c'est django crispy bootstrap ? 
     'crispy_bootstrap5',
+    'allauth',
+    'allauth.account'
 ]
 
+# django-allauth config
+SITE_ID = 1
+
+LOGIN_REDIRECT_URL = "home"
+LOGOUT_REDIRECT_URL = "home"
+ACCOUT_LOGOUT_REDIRECT = "home"
+
+AUTHENTICATION_BACKENDS = (
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend", 
+    
+)
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend" # we are setting the console shell because we hasn't configured a smtp server
+
+#django-allauth config
+ACCOUNT_SESSION_REMEMBER = True # The user's session will be automatically remembered ! 
+
 AUTH_USER_MODEL = "accounts.CustomUser"
+
+ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False # Pour qu'un nouvel utilisateur n'ait pas à rentrer son mot de passe deux fois ! 
+
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = "email"
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_MAIL = True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -136,9 +163,9 @@ STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = "home"
-LOGOUT_REDIRECT_URL = "home"
+
 
 # django-crispy-forms
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+

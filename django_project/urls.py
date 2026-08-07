@@ -20,7 +20,6 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('pages.urls')),
-    # Adding the built-in auth app
-    path('accounts/',include('django.contrib.auth.urls')),
-    path('accounts/',include('accounts.urls'))
+    # Adding the updated modern built-in auth app
+    path('accounts/',include('allauth.urls'))
 ]
