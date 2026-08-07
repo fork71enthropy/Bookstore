@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     # Local
     'accounts.apps.AccountsConfig',
     'pages.apps.PagesConfig',
+    'crispy_forms', # Pourquoi dans le livre c'est crispy forms alors qu'ici c'est django crispy bootstrap ? 
+    'crispy_bootstrap5',
 ]
 
 AUTH_USER_MODEL = "accounts.CustomUser"
@@ -124,9 +126,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
-STATICFILES_DIRS = [BASE_DIR/"static"] # BASE_DIR(dir wich has manage.py),  static (the folder I created)
-STATIC_ROOT = BASE_DIR/"staticfiles" # D'où sort le nom staticfiles ? Ca sera le nouveau dossier staticfiles où les fichiers statiques seront 
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / "static"] # BASE_DIR(dir wich has manage.py),  static (the folder I created)
+STATIC_ROOT = BASE_DIR / "staticfiles" # D'où sort le nom staticfiles ? Ca sera le nouveau dossier staticfiles où les fichiers statiques seront 
 # rassemblés pour que django les trouve facilement en prod, dans un seul endroit centralisé ! Mais ce n'est pas déjà dans un seul endroit centralisé ? 
 STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
 # Default primary key field type
@@ -137,3 +139,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = "home"
 LOGOUT_REDIRECT_URL = "home"
 
+# django-crispy-forms
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
