@@ -21,5 +21,13 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('pages.urls')),
     # Adding the updated modern built-in auth app
-    path('accounts/',include('allauth.urls'))
+    path('accounts/',include('allauth.urls')),
+    #path('accounts/',include('accounts.urls')),
+    path('books/',include('books.urls')),
 ]
+
+
+
+"""
+
+"""

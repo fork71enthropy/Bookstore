@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     'crispy_forms', # Pourquoi dans le livre c'est crispy forms alors qu'ici c'est django crispy bootstrap ? 
     'crispy_bootstrap5',
     'allauth',
-    'allauth.account'
+    'allauth.account',
+    'books.apps.BooksConfig', 
 ]
 
 # django-allauth config
@@ -63,7 +64,17 @@ AUTHENTICATION_BACKENDS = (
     
 )
 
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend" # we are setting the console shell because we hasn't configured a smtp server
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend" # we are setting the console shell because we hasn't configured a smtp server
+# On utilisera Brevo comme service smtp 
+
+
+"""EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp-relay.brevo.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = config('BREVO_SMTP_LOGIN')
+EMAIL_HOST_PASSWORD = config('BREVO_SMTP_KEY')
+DEFAULT_FROM_EMAIL = 'noreply@opus-symmetry.fr'"""
 
 #django-allauth config
 ACCOUNT_SESSION_REMEMBER = True # The user's session will be automatically remembered ! 
@@ -176,3 +187,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
+DEFAULT_FROM_EMAIL = "julientelook@gmail.com"
