@@ -5,18 +5,18 @@ class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = get_user_model()
         fields = (
-            "email",
             "username",
         )
 class CustomUserChangeForm(UserChangeForm):
     class Meta:
         model = get_user_model()
         fields = (
-            "email",
             "username",
+            "email",
+            "password",
         )
 
-
+# Connection refusée, je pense que je dois passer à autre chose et revenir dessus
 
 
 

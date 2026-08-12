@@ -64,7 +64,7 @@ AUTHENTICATION_BACKENDS = (
     
 )
 
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend" # we are setting the console shell because we hasn't configured a smtp server
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend" # we are setting the console shell because we hasn't configured a smtp server
 # On utilisera Brevo comme service smtp 
 
 
