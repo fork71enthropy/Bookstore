@@ -10,3 +10,4 @@ asgiref==3.12.1
 backports-datetime-fromisoformat==2.0.3
 environs==15.1.0
 environs[django]==15.1.0
+pillow==9.0.1

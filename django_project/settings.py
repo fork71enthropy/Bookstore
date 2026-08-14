@@ -61,7 +61,6 @@ ACCOUT_LOGOUT_REDIRECT = "home"
 AUTHENTICATION_BACKENDS = (
     "django.contrib.auth.backends.ModelBackend",
     "allauth.account.auth_backends.AuthenticationBackend", 
-    
 )
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend" # we are setting the console shell because we hasn't configured a smtp server
@@ -176,6 +175,8 @@ STATICFILES_DIRS = [BASE_DIR / "static"] # BASE_DIR(dir wich has manage.py),  st
 STATIC_ROOT = BASE_DIR / "staticfiles" # D'où sort le nom staticfiles ? Ca sera le nouveau dossier staticfiles où les fichiers statiques seront 
 # rassemblés pour que django les trouve facilement en prod, dans un seul endroit centralisé ! Mais ce n'est pas déjà dans un seul endroit centralisé ? 
 STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
