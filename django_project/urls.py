@@ -20,7 +20,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('anything-but-admin/', admin.site.urls), # hardening the django admin
     path('',include('pages.urls')),
     # Adding the updated modern built-in auth app
     path('accounts/',include('allauth.urls')),
