@@ -15,3 +15,8 @@ RUN pip install -r requirements.txt
 
 # Copy project
 COPY . .
+
+# Collect static files
+RUN python3 manage.py collectstatic --noinput
+
+

@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles', # Pour les fichiers statiques, c'est ici l'app préécrite
     'debug_toolbar', # added for viewing sql queries
     # Local
@@ -90,6 +91,7 @@ ACCOUNT_UNIQUE_MAIL = True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -176,7 +178,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / "static"] # BASE_DIR(dir wich has manage.py),  static (the folder I created)
 STATIC_ROOT = BASE_DIR / "staticfiles" # D'où sort le nom staticfiles ? Ca sera le nouveau dossier staticfiles où les fichiers statiques seront 
 # rassemblés pour que django les trouve facilement en prod, dans un seul endroit centralisé ! Mais ce n'est pas déjà dans un seul endroit centralisé ? 
-STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
+#STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage" # very weird
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 # Default primary key field type
