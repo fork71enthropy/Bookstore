@@ -12,15 +12,8 @@ services:
       - 8000:8000
     depends_on:
       - db
-    environment:
-      - "DJANGO_SECRET_KEY=django-insecure-bkjxl1-05o@drb4q#8xdb+^!(a7^mv4ksn@bmv53z*4ntjrs^^"
-      - "DJANGO_DEBUG=True"
-      - "DJANGO_SECURE_SSL_REDIRECT=False"
-      - "DJANGO_SECURE_HSTS_SECONDS= 0"
-      - "DJANGO_SECURE_HSTS_INCLUDE_SUBDOMAINS= False"
-      - "DJANGO_SECURE_HSTS_PRELOAD= False"
-      - "DJANGO_SESSION_COOKIE_SECURE=False"
-      - "DJANGO_CSRF_COOKIE_SECURE=False"
+    env_file:
+      - .env
   db:
     image: postgres:16
     volumes:
