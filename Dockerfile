@@ -16,8 +16,9 @@ RUN pip install -r requirements.txt
 # Copy project
 COPY . .
 
-# Collect static files
-RUN python3 manage.py collectstatic --noinput
 
-# Start server
-CMD gunicorn django_project.wsgi --bind 0.0.0.0:$PORT
+
+# Start server (collectstatic s'exécute maintenant au runtime, avec les vraies variables Railway)
+CMD python3 manage.py collectstatic --noinput && gunicorn django_project.wsgi --bind 0.0.0.0:$PORT
+
+
