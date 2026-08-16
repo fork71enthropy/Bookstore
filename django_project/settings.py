@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'books.apps.BooksConfig', 
+    'storages', # Cloudflare
 ]
 
 # django-allauth config
@@ -139,6 +140,24 @@ DATABASES = {
     default="postgres://postgres@db/postgres")
 }
 
+#New for static files uploaded for storage
+STORAGES = {
+    "default": {
+        "BACKEND": "storages.backends.s3.S3Storage",
+        "OPTIONS": {
+            "access_key": env("R2_ACCESS_KEY_ID"),
+            "secret_key": env("R2_SECRET_ACCESS_KEY"),
+            "bucket_name": env("R2_BUCKET_NAME"),
+            "endpoint_url": env("R2_ENDPOINT_URL"),
+            "region_name": "auto",
+            "default_acl": None,
+            "signature_version": "s3v4",
+        },
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
 

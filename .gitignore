@@ -4,3 +4,4 @@ db.sqlite3
 .env
 docker-compose-prod.yml
 .env.prod
+*.sql
