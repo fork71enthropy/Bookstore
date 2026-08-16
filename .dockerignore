@@ -1,4 +1,9 @@
+# .dockerignore
 .venv
 .git
 .gitignore
 .env
+.env.prod
+docker-compose.yml
+docker-compose-prod.yml
+db.sqlite3

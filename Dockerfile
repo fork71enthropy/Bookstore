@@ -19,4 +19,5 @@ COPY . .
 # Collect static files
 RUN python3 manage.py collectstatic --noinput
 
-
+# Start server
+CMD gunicorn django_project.wsgi --bind 0.0.0.0:$PORT
