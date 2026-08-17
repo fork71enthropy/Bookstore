@@ -25,7 +25,10 @@ env.read_env()
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env("DJANGO_SECRET_KEY", default="django-insecure-build-only-placeholder-do-not-use-in-prod")
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env.bool("DJANGO_DEBUG", default=False)
+
+
+#DEBUG = env.bool("DJANGO_DEBUG", default=False)
+DEBUG = True
 
 ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=["localhost", "127.0.0.1"])
 
