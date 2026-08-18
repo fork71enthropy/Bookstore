@@ -5,8 +5,9 @@ from django.contrib.auth.models import AbstractUser
 
 
 class Etudiant(AbstractUser):
-    hours = models.IntegerField(max_value=20) # pas plus de 20 heures
-    # id, email    
+    email = models.EmailField(primary_key=True, max_length=255)
+    hours = models.IntegerField(max_value=20, default=20) # pas plus de 20 heures
+    # id == email    
 
 class Carrel(models.Model):
     id = models.UUIDField(
