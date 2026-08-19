@@ -1,12 +1,13 @@
 from django.db import models
 import uuid # universally unique identifier
-from django.contrib.auth.models import AbstractUser
+#from django.contrib.auth.models import AbstractUser ; un étudiant c'est juste une adresse mail et un quota d'heures
 from django.core.exceptions import ValidationError
 from datetime import time
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 PREMIER_CRENEAU = time(8, 0)
-DERNIER_CRENEAU = time(19, 30)
+DERNIER_CRENEAU = time(19, 00)
 
 def validate_heure_lisse(value):
     if value.minute not in (0, 30) or value.second != 0 or value.microsecond != 0:
@@ -14,9 +15,12 @@ def validate_heure_lisse(value):
             f"L'heure doit être à 0 ou 30 minutes, reçu {value.strftime('%H:%M:%S')}"
         )
 
-class Etudiant(AbstractUser):
+class Etudiant(models.Model):
     email = models.EmailField(primary_key=True, max_length=255)
-    hours = models.IntegerField(max_value=20, default=20) # pas plus de 20 heures
+    hours = models.IntegerField(
+    default=20,
+    validators=[MaxValueValidator(20), MinValueValidator(0)]
+)
     # id == email    
 
 class Carrel(models.Model):
@@ -25,14 +29,17 @@ class Carrel(models.Model):
         default=uuid.uuid4,
         editable=False
     )
-    numero = models.IntegerField(max_value=444) # Je crois que 444 c'est le max
-    etage = models.IntegerField(max_value=4)
-    nb_places = models.IntegerField(max_value=2)
+    numero = models.IntegerField(validators=[MaxValueValidator(444), MinValueValidator(2)]) # Je crois que 444 c'est le max
+    etage = models.IntegerField(    validators=[MaxValueValidator(4), MinValueValidator(0)])
+    nb_places = models.IntegerField(validators=[MaxValueValidator(2), MinValueValidator(0)])
 
 class Creneau(models.Model):
-    pk = models.CompositePrimaryKey("date","duration")
-    duration = models.IntegerField(max_value=12)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    duration = models.IntegerField(validators=[MaxValueValidator(12), MinValueValidator(1)])
     date = models.DateTimeField()
+
+    class Meta:
+        unique_together = ("date", "duration")
 
     def clean(self):
         super().clean()
@@ -49,10 +56,21 @@ class Creneau(models.Model):
 
 
 class Reservation(models.Model):
-    pk = models.CompositePrimaryKey("etudiant","carrel","creneau")
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     etudiant = models.ForeignKey(Etudiant, on_delete=models.CASCADE)
     carrel = models.ForeignKey(Carrel, on_delete=models.CASCADE)
     creneau = models.ForeignKey(Creneau, on_delete=models.CASCADE)
+
+    class Meta:
+        unique_together = ("etudiant", "carrel", "creneau")
+
+
+
+
+
+
+
+
 
 
 

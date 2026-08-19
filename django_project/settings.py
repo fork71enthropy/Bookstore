@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'books.apps.BooksConfig', 
     'storages', # Cloudflare
+    'Reservation', # j'avais oublié d'ajouter l'app
 ]
 
 # django-allauth config
