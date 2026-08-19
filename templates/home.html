@@ -5,6 +5,8 @@
 {% block content %}
     <h1>This is our home page.</h1>
     <img class="bookcover" src="{% static 'images/serious_cryptography.jpeg' %}">
+    <a href="{% url 'carels_dispos' %}"><img class="bookcover" src="{% static 'images/carel.jpeg' %}" ></a>
+    <a href="{% url 'book_list' %}"><img class="bookcover" src="{% static 'images/livres.jpeg' %}" ></a>
 {% endblock content %} 
 
 

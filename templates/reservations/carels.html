@@ -1,0 +1,28 @@
+<!-- templates/books/book_list.html -->
+{% extends "_base.html" %}
+
+{% block title %}Carels{% endblock title %}
+
+{% block content %}
+    <!-- TODO : écrire la logique similaire à celle d'affluence -->
+     <h1>Salles de travail</h1>
+     <h2>BU Lyon 1</h2>
+     <p>Pour quel jour</p>
+     <p>A partir de quelle heure ? </p>
+
+     <div class="carels-dispos">
+        {% for carel in carels_dispos %}
+            <p> Carel : {{carel.numero}} avec {{carel.nb_places}} places de l'étage {{carel.etage}} </p>
+        {% endfor %}
+     </div>
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+

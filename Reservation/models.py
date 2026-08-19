@@ -19,7 +19,7 @@ def validate_heure_lisse(value):
 
     # id == email    
 
-class Carrel(models.Model):
+class Carel(models.Model):
     id = models.UUIDField(
         primary_key=True,
         default=uuid.uuid4,
@@ -54,11 +54,11 @@ class Creneau(models.Model):
 class Reservation(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     etudiant = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    carrel = models.ForeignKey(Carrel, on_delete=models.CASCADE)
+    carel = models.ForeignKey(Carel, on_delete=models.CASCADE)
     creneau = models.ForeignKey(Creneau, on_delete=models.CASCADE)
 
     class Meta:
-        unique_together = ("etudiant", "carrel", "creneau")
+        unique_together = ("etudiant", "carel", "creneau")
 
 
 
