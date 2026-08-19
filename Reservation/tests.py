@@ -1,11 +1,12 @@
 from django.test import TestCase
-from .models import Etudiant,Carrel,Creneau,Reservation
+from .models import Carrel,Creneau,Reservation
 from django.utils import timezone
+from accounts.models import CustomUser
 
 # Create your tests here.
 class EtudiantTests(TestCase):
     def test_create_etudiant(self):
-        etudiant = Etudiant.objects.create_user(email="julientelook@gmail.com")
+        etudiant = CustomUser.objects.create_user(email="julientelook@gmail.com")
         self.assertEqual(etudiant.email,"julientelook@gmail.com")
         self.assertEqual(etudiant.hours,20)        
         self.assertTrue(etudiant.is_active) # pas nécessaire
@@ -33,7 +34,7 @@ class CreneauTests(TestCase):
 
 class ReservationTests(TestCase):
     def setUp(self):
-        self.etudiant = Etudiant.objects.create_user(email="julientelook@gmail.com")
+        self.etudiant = CustomUser.objects.create_user(email="julientelook@gmail.com")
         self.carrel = Carrel.objects.create(numero=1, etage=1, nb_places=2)
         self.creneau = Creneau.objects.create(date=timezone.now(), duration=1)
 

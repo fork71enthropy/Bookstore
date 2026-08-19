@@ -4,6 +4,7 @@ import uuid # universally unique identifier
 from django.core.exceptions import ValidationError
 from datetime import time
 from django.core.validators import MaxValueValidator, MinValueValidator
+from accounts.models import CustomUser
 
 
 PREMIER_CRENEAU = time(8, 0)
@@ -15,12 +16,7 @@ def validate_heure_lisse(value):
             f"L'heure doit être à 0 ou 30 minutes, reçu {value.strftime('%H:%M:%S')}"
         )
 
-class Etudiant(models.Model):
-    email = models.EmailField(primary_key=True, max_length=255)
-    hours = models.IntegerField(
-    default=20,
-    validators=[MaxValueValidator(20), MinValueValidator(0)]
-)
+
     # id == email    
 
 class Carrel(models.Model):
@@ -57,7 +53,7 @@ class Creneau(models.Model):
 
 class Reservation(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    etudiant = models.ForeignKey(Etudiant, on_delete=models.CASCADE)
+    etudiant = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     carrel = models.ForeignKey(Carrel, on_delete=models.CASCADE)
     creneau = models.ForeignKey(Creneau, on_delete=models.CASCADE)
 
