@@ -29,6 +29,9 @@ class Carel(models.Model):
     etage = models.IntegerField(    validators=[MaxValueValidator(4), MinValueValidator(0)])
     nb_places = models.IntegerField(validators=[MaxValueValidator(2), MinValueValidator(0)])
 
+    def __str__(self):
+        return f"Carel {self.numero} de l'étage {self.etage}, place(s): {self.nb_places} "
+
 class Creneau(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     duration = models.IntegerField(validators=[MaxValueValidator(12), MinValueValidator(1)])

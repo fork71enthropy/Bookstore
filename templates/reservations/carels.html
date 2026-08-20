@@ -12,7 +12,8 @@
 
      <div class="carels-dispos">
         {% for carel in carels_dispos %}
-            <p> Carel : {{carel.numero}} avec {{carel.nb_places}} places de l'étage {{carel.etage}} </p>
+            <p>  {{carel.numero}}, étage {{carel.etage}} </p>
+            <p> Carel pour {{carel.nb_places}} personnes </p>
         {% endfor %}
      </div>
 {% endblock content %}
